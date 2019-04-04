@@ -215,6 +215,12 @@ class musicplayer(QWidget):
         self.label2.setText(time.strftime(
             '%M:%S', time.localtime(self.player.duration() / 1000)))
 
+    def closeEvent(self, event):
+        reply = QMessageBox.question(self, 'Message', 'Are you sure to quit?',
+                                     QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+
+        event.accept() if reply == QMessageBox.Yes else event.ignore()
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
